@@ -8,5 +8,5 @@ const store = configureStore();
 window.store = store;
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<Root />, document.getElementById('content'));
+  ReactDOM.render(<Root store={ store } />, document.getElementById('content'));
 });
