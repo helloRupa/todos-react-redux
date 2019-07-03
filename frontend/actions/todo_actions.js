@@ -8,5 +8,8 @@ export const receiveTodos = (todosArr) => ({
 
 export const receiveTodo = (todo) => ({
   type: RECEIVE_TODO,
-  todos: todo
+  todo: todo
 });
+
+window.receiveTodo = receiveTodo;
+window.receiveTodos = receiveTodos;
