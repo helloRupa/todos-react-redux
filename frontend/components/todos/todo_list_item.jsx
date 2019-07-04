@@ -1,38 +1,45 @@
 import React from 'react';
+import TodoDetailView from './todo_detail_view';
 
 export default class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {done: this.props.todo.done};
+    this.state = {done: this.props.todo.done, detail: false};
     this.updateTodo = this.updateTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
     this.updateDeleteText = this.updateDeleteText.bind(this);
-  }
-
-  deleteTodo() {
-    this.props.removeTodo(this.props.todo);
+    this.toggleDetail = this.toggleDetail.bind(this);
   }
 
   updateTodo(e) {
-    this.props.receiveTodo({...this.props.todo, done: !this.props.todo.done});
-
-    this.setState({done: !this.props.todo.done});
+    this.setState({done: !this.props.todo.done}, () => {
+      this.props.receiveTodo({...this.props.todo, done: this.state.done});
+    });
   }
 
   updateDeleteText() {
     return this.state.done ? 'Undo' : 'Done';
   }
 
+  toggleDetail() {
+    this.setState({detail: !this.state.detail});
+  }
+
+  showDetails() {
+    if (this.state.detail) {
+      return <TodoDetailView todo = {this.props.todo} removeTodo = {this.props.removeTodo} />;
+    } else {
+      return '';
+    }
+  }
+
   render() {
     return(
       <div>
-        <li>{this.props.todo.title}</li>
-        <button onClick={this.deleteTodo}>
-          Delete
-        </button>
+        <li onClick={this.toggleDetail}>{this.props.todo.title}</li>
         <button onClick={this.updateTodo}>
           {this.updateDeleteText()}
         </button>
+        {this.showDetails()}
       </div>
     );
   }

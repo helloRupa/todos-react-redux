@@ -1,4 +1,4 @@
-const allTodos = ({ todos }) => {
+export const allTodos = ({ todos }) => {
   const keys = Object.keys(todos);
 
   return keys.reduce((arr, key) => {
@@ -7,6 +7,19 @@ const allTodos = ({ todos }) => {
   }, []);
 };
 
-window.allTodos = allTodos;
+export const stepsByTodoId = (state, todoId) => {
+  let stepsArr = [];
 
-export default allTodos;
+  for (const stepId in state.steps) {
+    if (state.steps[stepId].todoId === todoId) {
+      const obj = {};
+      obj[stepId] = state.steps[stepId];
+      stepsArr.push(obj);
+    }
+  }
+
+  return stepsArr;
+};
+
+window.allTodos = allTodos;
+window.stepsByTodoId = stepsByTodoId;
