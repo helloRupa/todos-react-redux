@@ -17,6 +17,8 @@ const initialState = {
 };
 
 const todosReducer = (state = initialState, action) => {
+  let newState = {};
+
   switch(action.type) {
     case RECEIVE_TODOS:
       return action.todos.reduce((obj, todoObj) => {
@@ -24,14 +26,12 @@ const todosReducer = (state = initialState, action) => {
         return obj;
       }, {});
     case RECEIVE_TODO:
-      const obj = {};
-
-      obj[action.todo.id] = action.todo;
-      return merge({}, state, obj);
+      newState[action.todo.id] = action.todo;
+      return merge({}, state, newState);
     case REMOVE_TODO:
-      const newState = merge({}, state);
-
+      newState = merge({}, state);
       delete newState[action.todo.id];
+      
       return newState;
     default: 
       return state;

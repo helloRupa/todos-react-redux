@@ -1,5 +1,6 @@
 import React from 'react';
-import TodoDetailView from './todo_detail_view';
+// import TodoDetailView from './todo_detail_view';
+import TodoDetailViewContainer from './todo_detail_view_container';
 
 export default class TodoListItem extends React.Component {
   constructor(props) {
@@ -26,7 +27,8 @@ export default class TodoListItem extends React.Component {
 
   showDetails() {
     if (this.state.detail) {
-      return <TodoDetailView todo = {this.props.todo} removeTodo = {this.props.removeTodo} />;
+      return <TodoDetailViewContainer todo = {this.props.todo} />
+      // return <TodoDetailView todo = {this.props.todo} removeTodo = {this.props.removeTodo} />;
     } else {
       return '';
     }

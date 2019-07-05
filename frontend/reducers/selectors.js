@@ -7,14 +7,12 @@ export const allTodos = ({ todos }) => {
   }, []);
 };
 
-export const stepsByTodoId = (state, todoId) => {
+export const stepsByTodoId = ({steps}, {todoId}) => {
   let stepsArr = [];
 
-  for (const stepId in state.steps) {
-    if (state.steps[stepId].todoId === todoId) {
-      const obj = {};
-      obj[stepId] = state.steps[stepId];
-      stepsArr.push(obj);
+  for (const stepId in steps) {
+    if (steps[stepId].todoId === todoId) {
+      stepsArr.push(steps[stepId]);
     }
   }
 
