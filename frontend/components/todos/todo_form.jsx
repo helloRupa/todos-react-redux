@@ -49,7 +49,7 @@ export default class TodoForm extends React.Component {
           value={this.state.body}>
           </textarea>
 
-        <input type="submit" value="Submit" onClick={this.submit}></input>
+        <input type="submit" value="Submit"></input>
       </form>
     );
   }
