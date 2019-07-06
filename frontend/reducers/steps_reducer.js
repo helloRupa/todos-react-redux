@@ -28,6 +28,4 @@ const stepsReducer = (state = initialState, action) => {
   }
 };
 
-window.stepsReducer = stepsReducer;
-
 export default stepsReducer;

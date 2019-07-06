@@ -18,6 +18,3 @@ export const stepsByTodoId = ({steps}, {todoId}) => {
 
   return stepsArr;
 };
-
-window.allTodos = allTodos;
-window.stepsByTodoId = stepsByTodoId;
